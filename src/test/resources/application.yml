@@ -1,0 +1,16 @@
+---
+spring:
+  profiles: test
+  cloud:
+    gateway:
+      routes:
+        - id: basic_route
+          uri: http://localhost:8002
+          filters:
+            - RedirectTo=302, /api/v1/service
+          predicates:
+            - Path=/api/service
+        - id: v1
+          uri: http://localhost:8001
+          predicates:
+            - Path=/api/v1/service
