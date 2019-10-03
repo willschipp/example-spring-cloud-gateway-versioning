@@ -1,0 +1,9 @@
+[submodule "config-server"]
+	path = config-server
+	url = https://github.com/willschipp/example-spring-cloud-gateway-versioning-config.git
+[submodule "sample-server"]
+	path = sample-server
+	url = https://github.com/willschipp/example-spring-cloud-gateway-versioning-server.git
+[submodule "sample-client"]
+	path = sample-client
+	url = https://github.com/willschipp/example-spring-cloud-gateway-versioning-client.git
