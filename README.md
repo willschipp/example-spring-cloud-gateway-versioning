@@ -36,6 +36,42 @@ To manage backend versions, the following steps would be performed;
 
 ## Running
 
+1. clone this repo
+2. `git submodule init`
+3. `git submodule update`
+4. build the config server
+   ```
+   cd config-server
+   gradle bootJar
+   ```
+5. run the config server
+   `java -jar build/libs/[server].jar &`
+6. build the backend server
+   ```
+   cd ../sample-server
+   gradle bootJar
+   ```
+7. run two versions of the sample server
+   ```
+   java -Dserver.port=9001 -Dapp.version=1.1 -jar build/libs/[server].jar &
+   java -jar build/libs/[server].jar &
+   ```
+8. build the client
+   ```
+   cd ../sample-client
+   gradle bootJar
+   ```
+9. run the client
+   ```
+   java -jar build/libs/[server].jar &
+   ```
+10. test URLs
+   - `GET http://localhost:8001/client/service` should respond with `1.1`
+   - `GET http://localhost:8000/api/service` should respond with `1.1`
+   - `GET http://localhost:8000/api/v1/service` should respond with `1.0`
+   - `GET http://localhost:8000/api/v1.1/service` should respond with `1.1`
+    
+
 ### RabbitMQ Docker
 
 `docker run -d --hostname my-rabbit --name some-rabbit -p 15672:15672 -p 5672:5672 rabbitmq:3-management`
