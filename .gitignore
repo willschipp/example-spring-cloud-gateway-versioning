@@ -3,4 +3,4 @@
 out
 build
 *.iml
-gradle/
+gradle
